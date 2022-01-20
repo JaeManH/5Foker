@@ -15,12 +15,12 @@ public class Play_Game {
 		FiveFoker foker = new FiveFoker();
 		
 		String answer = "Y";
-		while(answer.equals("Y")) {
+		do {
 			foker.getCard();
 			foker.betting();
 			foker.changeCard();
-			System.out.println("한번 더 하시겠습니까? (Y/N)");
+			System.out.println("한번 더 하시겠습니까? (Retry \"Y\"/press any key to exit)");
 			answer = scan.next();
-		}
+		}while(answer.trim().toUpperCase().equals("Y"));
 	}
 }

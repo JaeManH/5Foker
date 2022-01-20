@@ -3,6 +3,12 @@ package com.min.game.rule;
 import com.min.game.card.CardOne;
 import java.util.Arrays;
 
+/**
+ * user의 카드를 입력받아 족보를 계산하고 족보의 등급을 int형으로 반환해주는 클래스
+ * int rank 가 높을수록 높은 족보다.
+ * @author JaeMan
+ *
+ */
 public class Jokbo {
 	private int[] mCardNumber;
 	private String[] mCardPattern;
@@ -24,7 +30,7 @@ public class Jokbo {
 	}
 
 	/**
-	 * 족보 체킹할 카드 배열을 세팅하는 메소드
+	 * 족보계산을 위해 user가 가진 CardOne[]을 받아오는 메소드
 	 * @param mCard
 	 */
 	public void setmCard(CardOne[] mCard) {
@@ -49,7 +55,8 @@ public class Jokbo {
 
 	/**
 	 * 카드를 정렬하는 메소드
-	 * 
+	 * String으로 받은 숫자는 Integer.valueOf메소드를 통해 숫자로 바꾸고
+	 * 알파벳으로 된 J,Q,K,A는 switch-case를 통해 숫자로 변환한다.
 	 * @param card 내가 들고있는 카드
 	 */
 	private void cardSorting(CardOne[] card) {
@@ -118,7 +125,10 @@ public class Jokbo {
 		}
 		return 0;
 	}
-
+/**
+ * 페어인지 아닌지 검사하는 메소드
+ * @return
+ */
 	private int checkPair() {
 		int grade = 0;
 		switch (cardChk()) {
