@@ -7,20 +7,34 @@ public class Jokbo {
 	private int[] mCardNumber;
 	private String[] mCardPattern;
 	private CardOne[] mCard;
-	private final static int EMPTY_CARD = 100;
 
+	public int[] getmCardNumber() {
+		return mCardNumber;
+	}
+	public String[] getmCardPattern() {
+		return mCardPattern;
+	}
 	public Jokbo() {
+		this(5);
+	}
+
+	public Jokbo(int i) {
 		mCardNumber = new int[5];
-		Arrays.fill(mCardNumber, EMPTY_CARD);
 		mCardPattern = new String[5];
 	}
 
+	/**
+	 * 족보 체킹할 카드 배열을 들고오는 메소드
+	 * 
+	 * @param mCard
+	 */
 	public void setmCard(CardOne[] mCard) {
 		this.mCard = mCard;
 	}
 
 	/**
-	 * setmCard로 세팅 후 카드 족보를 모두 검사하는 메소드 
+	 * setmCard로 세팅 후 카드 족보를 모두 검사하는 메소드
+	 * 
 	 * @return
 	 */
 	public int checkJokbo() {
@@ -53,12 +67,11 @@ public class Jokbo {
 			} else {
 				mCardNumber[i] = Integer.valueOf(split[1]);
 			}
-
 			mCardPattern[i] = split[0].toString();
 		}
 		Arrays.sort(mCardNumber);
 		for (int i : mCardNumber) {
-			System.out.printf("%d ", i);
+				System.out.printf("%d ", i);
 		}
 		System.out.println();
 	}
@@ -68,14 +81,13 @@ public class Jokbo {
 	 */
 	private int checkStraightAndFlush() {
 
-		CardOne highCard;
+		
 		int flush = 0;
 		int straight = 0;
 
 		for (int i = 0; i < mCardNumber.length - 1; i++) {
 			if (mCardNumber[i] + 1 == mCardNumber[i + 1]) {
 				straight++;
-				highCard = mCard[i + 1];
 			}
 			if (mCardPattern[i] == mCardPattern[i + 1]) {
 				flush++;
@@ -108,43 +120,42 @@ public class Jokbo {
 	}
 
 	private int checkPair() {
-		  int grade = 0;
-	      switch (cardChk()) {
-	      case 2:
-	         grade = 2;
-	         System.out.println("원페어");
-	         break;
+		int grade = 0;
+		switch (cardChk()) {
+		case 2:
 
-	      case 4:
-	         grade = 4;
-	         System.out.println("투페어");
-	         break;
-	      case 6:
-	         grade = 6;
-	         System.out.println("트리플");
-	         break;
-	      case 8:
-	         grade = 8;
-	         System.out.println("풀하우스");
-	         break;
-	      case 12:
-	         grade = 12;
-	         System.out.println("포카드");
-	         break;
-	      }
-	      return grade;
+			System.out.println("원페어");
+			return 1;
+
+		case 4:
+			System.out.println("투페어");
+			return 2;
+		case 6:
+
+			System.out.println("트리플");
+			return 3;
+		case 8:
+
+			System.out.println("풀하우스");
+			return 8;
+		case 12:
+
+			System.out.println("포카드");
+			return 9;
+		}
+		return grade;
 
 	}
-	public int cardChk() {
-	      int cnt = 0;
-	      for (int i = 0; i < mCardNumber.length; i++) {
-	         for (int j = 0; j < mCardNumber.length; j++) {
-	            if(i!=j && mCardNumber[i]==mCardNumber[j]) {
-	               cnt++;
-	            }
-	         }
-	      }
-	      return cnt;
-	   }
 
+	private int cardChk() {
+		int cnt = 0;
+		for (int i = 0; i < mCardNumber.length; i++) {
+			for (int j = 0; j < mCardNumber.length; j++) {
+				if (i != j && mCardNumber[i] == mCardNumber[j]) {
+					cnt++;
+				}
+			}
+		}
+		return cnt;
+	}
 }
