@@ -1,5 +1,10 @@
 package com.min.game.money;
 
+/**
+ * 배팅한 금액을 족보의 등급배율에 곱해서 최종금액까지 계산해주는 클래스
+ * @author JaeMan
+ *
+ */
 public class Batting {
 
 	private int sidMoney = 10000;

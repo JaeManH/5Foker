@@ -3,6 +3,7 @@ package com.min.game;
 import java.util.List;
 import java.util.Scanner;
 
+import com.min.foker.FokerUtil;
 import com.min.game.card.CardCase;
 import com.min.game.card.CardOne;
 import com.min.game.money.Batting;
@@ -19,7 +20,6 @@ public class FiveFoker {
 	CardCase make = new CardCase();
 	List<CardOne> allCard= make.getCardcase();
 	CardOne[] user = new CardOne[5];
-	Scanner scan = new Scanner(System.in);
 	Batting bet = new Batting();
 	int rank = 0;
 	/**
@@ -37,7 +37,6 @@ public class FiveFoker {
 		System.out.println();
 	}
 	
-	//TODO 예외처리 만들기 
 	/**
 	 * 원하는 카드를 1~5번까지 한장 교체 할 수 있는 메소드
 	 * 5번 반복 
@@ -45,7 +44,7 @@ public class FiveFoker {
 	public void changeCard() {
 		for (int i = 0; i < user.length; i++) {
 			System.out.printf("바꾸고 싶은 카드를 선택해주세요(1번~5번)\n 안바꾼다:0번 (남은기회: %d번) ",5-i);
-			int c = scan.nextInt();
+			int c = FokerUtil.fokerInput();
 			if(c==0) {
 				break;
 			}else {
@@ -72,16 +71,18 @@ public class FiveFoker {
 		System.out.println();
 	}
 	/**
-	 *  sidMoney보다 작은 정수를 입력받아 배팅을 하는 메소드 
+	 *  sidMoney이하 또는 1000이상 정수를 입력받아 배팅을 하는 메소드 
 	 */
 	public void betting()
 	{
+		
 		System.out.printf("배팅금을 입력해주세요.(1000원이상) \n(남은돈:"+bet.getSidMoney()+")");
-		try {
-			bet.bet(scan.nextInt());
-		} catch (Exception e) {
-			e.printStackTrace();
+		int betMoney=FokerUtil.fokerInput();
+		while(!(betMoney>=1000)||!(betMoney<=bet.getSidMoney())) {
+			System.out.println("범위에 맞는 값을 입력해주세요");
+			betMoney=FokerUtil.fokerInput();
 		}
+		bet.bet(betMoney);
 		
 	}
 }

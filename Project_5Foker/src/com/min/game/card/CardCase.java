@@ -16,7 +16,10 @@ public class CardCase {
 		cardcase = new ArrayList<CardOne>();
 		make();
 	}
-
+/**
+ * List<CardOne>을 모두 비우고 다시 새롭게 채우는 메소드
+ * @return
+ */
 	public List<CardOne> getCardcase() {
 		cardcase.clear();
 		make();
