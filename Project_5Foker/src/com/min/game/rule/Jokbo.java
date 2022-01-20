@@ -24,8 +24,7 @@ public class Jokbo {
 	}
 
 	/**
-	 * 족보 체킹할 카드 배열을 들고오는 메소드
-	 * 
+	 * 족보 체킹할 카드 배열을 세팅하는 메소드
 	 * @param mCard
 	 */
 	public void setmCard(CardOne[] mCard) {
@@ -33,9 +32,9 @@ public class Jokbo {
 	}
 
 	/**
-	 * setmCard로 세팅 후 카드 족보를 모두 검사하는 메소드
-	 * 
-	 * @return
+	 * setmCard메소드로 족보를 검사할 카드 세팅 후  
+	 * 족보를 모두 검사하는 메소드
+	 * @return rank 족보의 랭킹을 int형으로 나타냄 숫자가 높을수록 높은 족보
 	 */
 	public int checkJokbo() {
 		cardSorting(mCard);
@@ -43,7 +42,8 @@ public class Jokbo {
 		int straightAndFlush = checkStraightAndFlush();
 		int pair = checkPair();
 		rank = (straightAndFlush > pair) ? straightAndFlush : pair;
-
+		if(rank==0)
+			System.out.println("TOP...");
 		return rank;
 	}
 
@@ -70,10 +70,10 @@ public class Jokbo {
 			mCardPattern[i] = split[0].toString();
 		}
 		Arrays.sort(mCardNumber);
-		for (int i : mCardNumber) {
-				System.out.printf("%d ", i);
-		}
-		System.out.println();
+//		for (int i : mCardNumber) {
+//				System.out.printf("%d ", i);
+//		}
+//		System.out.println();
 	}
 
 	/**
@@ -95,25 +95,25 @@ public class Jokbo {
 		}
 
 		if (straight == 4 && flush == 4 && mCardNumber[4] == 14) {
-			System.out.println("로얄스트레이트 플러시 입니다");
+			System.out.println("로얄스트레이트 플러시 입니다!");
 			return 12;
 		} else if (straight == 3 && mCardNumber[3] == 5 && mCardNumber[4] == 14 && flush == 4) {
-			System.out.println("백 스트레이트 플러시 입니다");
+			System.out.println("백 스트레이트 플러시 입니다!");
 			return 11;
 		} else if (straight == 4 && flush == 4) {
-			System.out.println("스트레이트 플러시입니다");
+			System.out.println("스트레이트 플러시 입니다!");
 			return 10;
 		} else if (straight == 4 && mCardNumber[4] == 14) {
-			System.out.println("마운틴 입니다");
+			System.out.println("마운틴 입니다!");
 			return 6;
 		} else if (straight == 3 && mCardNumber[3] == 5 && mCardNumber[4] == 14) {
-			System.out.println("백 스트레이트 입니다");
+			System.out.println("백 스트레이트 입니다!");
 			return 5;
 		} else if (straight == 4) {
-			System.out.println("스트레이트 입니다");
+			System.out.println("스트레이트 입니다!");
 			return 4;
 		} else if (flush == 4) {
-			System.out.println("플러쉬 입니다");
+			System.out.println("플러쉬 입니다!");
 			return 7;
 		}
 		return 0;
@@ -124,23 +124,23 @@ public class Jokbo {
 		switch (cardChk()) {
 		case 2:
 
-			System.out.println("원페어");
+			System.out.println("원페어 입니다!");
 			return 1;
 
 		case 4:
-			System.out.println("투페어");
+			System.out.println("투페어 입니다!");
 			return 2;
 		case 6:
 
-			System.out.println("트리플");
+			System.out.println("트리플 입니다!");
 			return 3;
 		case 8:
 
-			System.out.println("풀하우스");
+			System.out.println("풀하우스 입니다!");
 			return 8;
 		case 12:
 
-			System.out.println("포카드");
+			System.out.println("포카드 입니다!");
 			return 9;
 		}
 		return grade;
