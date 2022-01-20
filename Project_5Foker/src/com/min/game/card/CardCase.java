@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 로또 한줄을 만들어 내는 클래스 
+ * 카드 덱 하나를 만들어 내는 클래스 
  * @author JaeMan
  *
  */
@@ -17,8 +17,9 @@ public class CardCase {
 		make();
 	}
 
-	
 	public List<CardOne> getCardcase() {
+		cardcase.clear();
+		make();
 		return cardcase;
 	}
 
